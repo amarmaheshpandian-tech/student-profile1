@@ -1,0 +1,812 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amar Mahesh.S | Student Portal</title>
+
+    <!-- QR CODE LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: white;
+            padding: 25px 20px 60px;
+            border-radius: 0 0 35px 35px;
+        }
+
+        .header-content {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .school {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        header p {
+            margin-top: 6px;
+            opacity: 0.9;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            max-width: 650px;
+            margin: -35px auto 0;
+            padding: 0 15px 30px;
+        }
+
+        /* ================= PROFILE CARD ================= */
+
+        .profile-card {
+            background: white;
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+            text-align: center;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            margin: -65px auto 15px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(135deg, #4f46e5, #818cf8);
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+            font-weight: bold;
+
+            border: 6px solid white;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .profile-card h2 {
+            font-size: 24px;
+        }
+
+        .class {
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 7px 14px;
+
+            background: #dcfce7;
+            color: #166534;
+
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* ================= NAVIGATION ================= */
+
+        .nav {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .nav button {
+            border: none;
+            background: #f1f5f9;
+            color: #172033;
+
+            padding: 14px;
+            border-radius: 14px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav button:hover {
+            background: #e0e7ff;
+            transform: translateY(-2px);
+        }
+
+        /* ================= SECTIONS ================= */
+
+        .section {
+            background: white;
+            border-radius: 22px;
+            padding: 22px;
+            margin-top: 18px;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 18px;
+
+            color: #4f46e5;
+            font-size: 20px;
+        }
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        /* ================= INFORMATION ================= */
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 14px 0;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            gap: 15px;
+        }
+
+        .info:last-child {
+            border-bottom: none;
+        }
+
+        .info span {
+            color: #64748b;
+        }
+
+        .info strong {
+            text-align: right;
+        }
+
+        /* ================= GRADES ================= */
+
+        .grade {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 15px;
+
+            background: #f8fafc;
+
+            border-radius: 14px;
+
+            margin-bottom: 10px;
+        }
+
+        .subject {
+            font-weight: bold;
+        }
+
+        .marks {
+            color: #4f46e5;
+            font-weight: bold;
+        }
+
+        .overall {
+            margin-top: 15px;
+
+            padding: 17px;
+
+            background: #eef2ff;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            color: #3730a3;
+        }
+
+        /* ================= ACHIEVEMENTS ================= */
+
+        .achievement {
+            padding: 15px;
+
+            background: #f8fafc;
+
+            border-radius: 14px;
+
+            margin-bottom: 10px;
+        }
+
+        .achievement h3 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .achievement p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* ================= CALENDAR ================= */
+
+        input[type="date"] {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+        }
+
+        #dateOutput {
+            margin-top: 15px;
+
+            padding: 14px;
+
+            background: #f8fafc;
+
+            border-radius: 12px;
+
+            display: none;
+        }
+
+        /* ================= CALL BUTTON ================= */
+
+        .call-button {
+            display: block;
+
+            width: 100%;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            background: #16a34a;
+
+            color: white;
+
+            padding: 15px;
+
+            border-radius: 14px;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+        }
+
+        /* ================= QR ================= */
+
+        .qr-section {
+            text-align: center;
+        }
+
+        #qrcode {
+            display: flex;
+            justify-content: center;
+
+            margin: 20px 0;
+        }
+
+        #qrcode img {
+            padding: 10px;
+            background: white;
+
+            border-radius: 12px;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .qr-description {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            padding: 25px 10px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 500px) {
+
+            header h1 {
+                font-size: 23px;
+            }
+
+            .profile-card h2 {
+                font-size: 21px;
+            }
+
+            .nav {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .info {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="header-content">
+
+        <div class="school">
+            🎓 STUDENT PORTAL
+        </div>
+
+        <h1>Velammal Vidyalaya</h1>
+
+        <p>Digital Student Profile</p>
+
+    </div>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- ================= PROFILE ================= -->
+
+<div class="profile-card">
+
+    <div class="avatar">
+        AM
+    </div>
+
+    <h2>Amar Mahesh.S</h2>
+
+    <p class="class">
+        Class 8B
+    </p>
+
+    <div class="status">
+        ● Active Student
+    </div>
+
+
+    <div class="nav">
+
+        <button onclick="showSection('profile')">
+            👤 Profile
+        </button>
+
+        <button onclick="showSection('grades')">
+            📊 Grades
+        </button>
+
+        <button onclick="showSection('calendar')">
+            📅 Calendar
+        </button>
+
+        <button onclick="showSection('dob')">
+            🎂 Date of Birth
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PROFILE INFORMATION ================= -->
+
+<div class="section" id="profile">
+
+    <h2 class="section-title">
+        👤 Student Information
+    </h2>
+
+    <div class="info">
+        <span>Full Name</span>
+        <strong>Amar Mahesh.S</strong>
+    </div>
+
+    <div class="info">
+        <span>Class</span>
+        <strong>8B</strong>
+    </div>
+
+    <div class="info">
+        <span>School</span>
+        <strong>Velammal Vidyalaya</strong>
+    </div>
+
+    <div class="info">
+        <span>Status</span>
+        <strong>Active</strong>
+    </div>
+
+</div>
+
+
+<!-- ================= GRADES ================= -->
+
+<div class="section" id="grades">
+
+    <h2 class="section-title">
+        📊 Academic Grades
+    </h2>
+
+    <!-- CHANGE THESE MARKS -->
+
+    <div class="grade">
+        <span class="subject">Mathematics</span>
+        <span class="marks">85 / 100</span>
+    </div>
+
+    <div class="grade">
+        <span class="subject">Science</span>
+        <span class="marks">88 / 100</span>
+    </div>
+
+    <div class="grade">
+        <span class="subject">English</span>
+        <span class="marks">82 / 100</span>
+    </div>
+
+    <div class="grade">
+        <span class="subject">Social Science</span>
+        <span class="marks">90 / 100</span>
+    </div>
+
+    <div class="grade">
+        <span class="subject">Tamil</span>
+        <span class="marks">86 / 100</span>
+    </div>
+
+    <div class="overall">
+        Overall Performance: 86.2%
+    </div>
+
+</div>
+
+
+<!-- ================= CALENDAR ================= -->
+
+<div class="section" id="calendar">
+
+    <h2 class="section-title">
+        📅 Calendar
+    </h2>
+
+    <p style="color:#64748b; margin-bottom:15px;">
+        Select a date:
+    </p>
+
+    <input
+        type="date"
+        id="datePicker"
+        onchange="showDate()"
+    >
+
+    <div id="dateOutput"></div>
+
+</div>
+
+
+<!-- ================= DOB ================= -->
+
+<div class="section" id="dob">
+
+    <h2 class="section-title">
+        🎂 Date of Birth
+    </h2>
+
+    <!-- CHANGE THIS TO THE CORRECT DOB -->
+
+    <div class="info">
+
+        <span>Date of Birth</span>
+
+        <strong>
+            DD / MM / YYYY
+        </strong>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ACHIEVEMENTS ================= -->
+
+<div class="section">
+
+    <h2 class="section-title">
+        🏆 Achievements
+    </h2>
+
+    <div class="achievement">
+
+        <h3>🎵 Music</h3>
+
+        <p>
+            Creates and works on original music projects.
+        </p>
+
+    </div>
+
+
+    <div class="achievement">
+
+        <h3>💻 Technology</h3>
+
+        <p>
+            Interested in coding, websites and digital projects.
+        </p>
+
+    </div>
+
+
+    <div class="achievement">
+
+        <h3>🏸 Sports</h3>
+
+        <p>
+            Participates in badminton activities.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= CONTACT ================= -->
+
+<div class="section">
+
+    <h2 class="section-title">
+        📞 Contact
+    </h2>
+
+    <p style="color:#64748b;">
+        Use the button below to contact the student.
+    </p>
+
+    <a
+        class="call-button"
+        href="tel:9500092710"
+    >
+        📞 Call 9500092710
+    </a>
+
+</div>
+
+
+<!-- ================= QR CODE ================= -->
+
+<div class="section qr-section">
+
+    <h2 class="section-title" style="justify-content:center;">
+        📱 Student QR Code
+    </h2>
+
+    <p>
+        Scan this QR code to open the student profile.
+    </p>
+
+    <div id="qrcode"></div>
+
+    <p class="qr-description">
+        Put this QR code on a student ID card,
+        notebook, project or school tag.
+    </p>
+
+</div>
+
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    SmartStudent QR © 2026<br>
+    Digital Student Profile
+
+</footer>
+
+
+
+<script>
+
+
+/* ==========================================
+   SECTION NAVIGATION
+   ========================================== */
+
+function showSection(sectionName) {
+
+    const sections = [
+        "profile",
+        "grades",
+        "calendar",
+        "dob"
+    ];
+
+    sections.forEach(function(section) {
+
+        document.getElementById(section).style.display = "none";
+
+    });
+
+
+    const selected =
+        document.getElementById(sectionName);
+
+
+    selected.style.display = "block";
+
+
+    selected.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+
+/* ==========================================
+   CALENDAR
+   ========================================== */
+
+function showDate() {
+
+    const date =
+        document.getElementById("datePicker").value;
+
+    const output =
+        document.getElementById("dateOutput");
+
+
+    if (date === "") {
+
+        output.style.display = "none";
+
+        return;
+
+    }
+
+
+    const formatted =
+        new Date(date).toLocaleDateString(
+            "en-IN",
+            {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            }
+        );
+
+
+    output.innerHTML =
+        "📅 Selected date:<br><strong>"
+        + formatted
+        + "</strong>";
+
+
+    output.style.display = "block";
+
+}
+
+
+/* ==========================================
+   QR CODE
+   ==========================================
+
+   IMPORTANT:
+
+   After hosting this website, replace
+   the URL below with your REAL website URL.
+
+   Example:
+
+   https://username.github.io/student-profile/
+
+   ========================================== */
+
+
+const profileURL =
+    "https://yourusername.github.io/student-profile/";
+
+
+new QRCode(
+
+    document.getElementById("qrcode"),
+
+    {
+
+        text: profileURL,
+
+        width: 200,
+
+        height: 200,
+
+        colorDark: "#111827",
+
+        colorLight: "#ffffff",
+
+        correctLevel:
+            QRCode.CorrectLevel.H
+
+    }
+
+);
+
+
+</script>
+
+
+</body>
+
+</html>
+```
